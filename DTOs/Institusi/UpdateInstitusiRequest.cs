@@ -5,7 +5,8 @@ namespace astratech_apps_backend.DTOs.Institusi
     public class UpdateInstitusiRequest
     {
         [Required(ErrorMessage = "ID institusi harus diisi.")]
-        public short Id { get; set; }
+        [Range(1, short.MaxValue, ErrorMessage = "ID institusi tidak valid.")]
+        public required short Id { get; set; }
 
         [Required(ErrorMessage = "Nama institusi harus diisi.")]
         [StringLength(100)]

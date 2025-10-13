@@ -14,8 +14,8 @@ namespace astratech_apps_backend.Services.Implementations
             try
             {
                 var list = new List<Aplikasi>();
-                await using var conn = new SqlConnection(_conn);
 
+                await using var conn = new SqlConnection(_conn);
                 await using var cmd = new SqlCommand("sso_getAppByUser", conn)
                 {
                     CommandType = CommandType.StoredProcedure
@@ -52,8 +52,8 @@ namespace astratech_apps_backend.Services.Implementations
             try
             {
                 var list = new List<string>();
-                await using var conn = new SqlConnection(_conn);
 
+                await using var conn = new SqlConnection(_conn);
                 await using var cmd = new SqlCommand("sso_getListAkses", conn)
                 {
                     CommandType = CommandType.StoredProcedure
@@ -83,9 +83,7 @@ namespace astratech_apps_backend.Services.Implementations
         {
             try
             {
-                var list = new List<string>();
                 await using var conn = new SqlConnection(_conn);
-
                 await using var cmd = new SqlCommand("sso_getAksesByUser", conn)
                 {
                     CommandType = CommandType.StoredProcedure

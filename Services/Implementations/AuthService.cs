@@ -6,10 +6,10 @@ using System.Security.Claims;
 
 namespace astratech_apps_backend.Services.Implementations
 {
-    public class AuthService(IConfiguration config, ILDAPService ldapService, IUserService userService, IHttpContextAccessor httpContextAccessor) : IAuthService
+    public class AuthService(IConfiguration config, ILdapService ldapService, IUserService userService, IHttpContextAccessor httpContextAccessor) : IAuthService
     {
         private readonly IConfiguration _config = config;
-        private readonly ILDAPService _ldapService = ldapService;
+        private readonly ILdapService _ldapService = ldapService;
         private readonly IUserService _userService = userService;
         private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
 

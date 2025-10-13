@@ -5,11 +5,11 @@ using System.Text;
 
 namespace astratech_apps_backend.Services.Implementations
 {
-    public class LDAPService(IConfiguration configuration, ILogger<LDAPService> logger) : ILDAPService
+    public class LdapService(IConfiguration configuration, ILogger<LdapService> logger) : ILdapService
     {
         private readonly string _ldapServer = configuration["Key:LDAPServer"]!;
         private readonly string _ldapDN = configuration["Key:LDAPDN"]!;
-        private readonly ILogger<LDAPService> _logger = logger;
+        private readonly ILogger<LdapService> _logger = logger;
 
         public async Task<(bool IsSuccess, string? ErrorMessage)> AuthenticateAsync(string username, string password)
         {

@@ -12,7 +12,7 @@ using System.Text;
 
 namespace astratech_apps_backend
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
@@ -67,7 +67,7 @@ namespace astratech_apps_backend
             builder.Services.AddAutoMapper(typeof(Program));
             builder.Services.AddHttpContextAccessor();
 
-            builder.Services.AddScoped<ILDAPService, LDAPService>();
+            builder.Services.AddScoped<ILdapService, LdapService>();
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IAuthorizationHandler, HasPermissionHandler>();

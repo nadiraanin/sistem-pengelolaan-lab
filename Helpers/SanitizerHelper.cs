@@ -19,13 +19,10 @@ namespace astratech_apps_backend.Helpers
                 if (property.CanWrite && property.PropertyType == typeof(string))
                 {
                     var value = (string?)property.GetValue(obj);
-                    if (!string.IsNullOrEmpty(value))
+                    if (!string.IsNullOrEmpty(value) && !property.Name.Equals("Password"))
                     {
-                        if (!property.Name.Equals("Password"))
-                        {
-                            var encodedValue = WebUtility.HtmlEncode(value);
-                            property.SetValue(obj, encodedValue);
-                        }
+                        var encodedValue = WebUtility.HtmlEncode(value);
+                        property.SetValue(obj, encodedValue);
                     }
                 }
             }
