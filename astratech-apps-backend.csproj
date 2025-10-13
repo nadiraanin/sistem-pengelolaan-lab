@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <Reference Include="PolmanAstraLibrary">
-      <HintPath>..\..\..\SISTEM INFORMASI AKADEMIK\DEVELOPMENT\bin\PolmanAstraLibrary.dll</HintPath>
+      <HintPath>Libs\PolmanAstraLibrary.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
