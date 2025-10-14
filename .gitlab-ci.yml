@@ -29,15 +29,19 @@ build-sonar:
       else
         dotnet tool update --global dotnet-sonarscanner
       fi
-    - export PATH="$PATH:$HOME/.dotnet/tools"
-    - dotnet sonarscanner begin \
+
+      export PATH="$PATH:$HOME/.dotnet/tools"
+
+      dotnet sonarscanner begin \
         /k:"astradualsystem_astratech-apps-backend_863a7eee-e81d-4fe9-8d77-af33da7e08cc" \
         /v:"$CI_COMMIT_SHORT_SHA" \
         /d:sonar.token="$SONAR_TOKEN" \
         /d:sonar.host.url="$SONAR_HOST_URL" \
         /d:sonar.exclusions=".gitlab-ci.yml,.gitlab-ci/**/*,*.gitlab-ci.yml,Dockerfile*,*.dockerfile,.dockerignore,docker-compose*.yml"
-    - dotnet build --no-incremental
-    - dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"   
+
+      dotnet build --no-incremental
+
+      dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
   allow_failure: true
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
