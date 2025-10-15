@@ -14,9 +14,10 @@ namespace astratech_apps_backend.Services.Implementations
             try
             {
                 var list = new List<Aplikasi>();
+                bool isUserExist = false;
 
                 await using var conn = new SqlConnection(_conn);
-                await using var cmd = new SqlCommand("sso_getAppByUser", conn)
+                await using var cmd = new SqlCommand("sso_getAppByUsername", conn)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -27,6 +28,7 @@ namespace astratech_apps_backend.Services.Implementations
                 await using var reader = await cmd.ExecuteReaderAsync();
                 if (await reader.ReadAsync())
                 {
+                    isUserExist = true;
                     do
                     {
                         list.Add(new Aplikasi
@@ -39,7 +41,10 @@ namespace astratech_apps_backend.Services.Implementations
                         });
                     } while (await reader.ReadAsync());
                 }
-                return (true, list, "");
+
+                if (isUserExist)
+                    return (true, list, "");
+                return (false, list, "Username atau password tidak valid.");
             }
             catch (Exception ex)
             {
@@ -84,7 +89,7 @@ namespace astratech_apps_backend.Services.Implementations
             try
             {
                 await using var conn = new SqlConnection(_conn);
-                await using var cmd = new SqlCommand("sso_getAksesByUser", conn)
+                await using var cmd = new SqlCommand("sso_getAksesByUsername", conn)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
