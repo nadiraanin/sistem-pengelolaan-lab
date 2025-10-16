@@ -25,6 +25,7 @@ namespace astratech_apps_backend.Controllers
 
             var res = await _auth.AuthenticateAsync(sanitizedDto);
             if (res?.Token == null) return Unauthorized(new { message = res?.ErrorMessage });
+            if (!string.IsNullOrEmpty(res?.ErrorMessage)) return BadRequest(new { message = res?.ErrorMessage });
             return Ok(res);
         }
 
@@ -42,6 +43,7 @@ namespace astratech_apps_backend.Controllers
 
             var res = await _auth.GetPermissionAsync(sanitizedDto);
             if (res?.Token == null) return Unauthorized(new { message = res?.ErrorMessage });
+            if (!string.IsNullOrEmpty(res?.ErrorMessage)) return BadRequest(new { message = res?.ErrorMessage });
             return Ok(res);
         }
     }

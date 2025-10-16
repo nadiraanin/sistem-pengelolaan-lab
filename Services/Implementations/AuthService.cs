@@ -51,10 +51,13 @@ namespace astratech_apps_backend.Services.Implementations
             };
 
             var token = JwtHelper.GenerateToken(key, issuer, audience, TimeSpan.FromMinutes(minutes), claims);
+            var nama = await _ldapService.GetDisplayNameAsync(dto.Username);
+            nama ??= dto.Username;
 
             return new LoginResponseDto
             {
                 Token = token,
+                Nama = nama,
                 ListAplikasi = ListAplikasi,
                 ExpiresAt = DateTime.UtcNow.AddMinutes(minutes)
             };
