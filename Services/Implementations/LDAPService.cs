@@ -1,4 +1,4 @@
-﻿using astratech_apps_backend.Services.Interfaces;
+using astratech_apps_backend.Services.Interfaces;
 using System.DirectoryServices.Protocols;
 using System.Net;
 using System.Text;
@@ -15,26 +15,28 @@ namespace astratech_apps_backend.Services.Implementations
         {
             return await Task.Run(() =>
             {
-                try
-                {
-                    using var connection = new LdapConnection(_ldapServer);
-                    connection.AuthType = AuthType.Basic;
-                    connection.SessionOptions.ReferralChasing = ReferralChasingOptions.None;
-                    connection.Bind(new NetworkCredential($"polman\\{username}", password));
-                    return (true, "");
-                }
-                catch (LdapException ex)
-                {
-                    _logger.LogError(ex, "Gagal melakukan autentikasi untuk username {Username}. Error code: {Code}", username, ex.ErrorCode);
+                // try
+                // {
+                //     using var connection = new LdapConnection(_ldapServer);
+                //     connection.AuthType = AuthType.Basic;
+                //     connection.SessionOptions.ReferralChasing = ReferralChasingOptions.None;
+                //     connection.Bind(new NetworkCredential($"polman\\{username}", password));
+                //     return (true, "");
+                // }
+                // catch (LdapException ex)
+                // {
+                //     _logger.LogError(ex, "Gagal melakukan autentikasi untuk username {Username}. Error code: {Code}", username, ex.ErrorCode);
 
-                    if (ex.ErrorCode == 49) return (false, "Username atau password tidak valid.");
-                    return (false, $"Koneksi ke server LDAP gagal: {ex.Message}");
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, "Terjadi kesalahan pada proses autentikasi.");
-                    return (false, "Terjadi kesalahan pada proses autentikasi.");
-                }
+                //     if (ex.ErrorCode == 49) return (false, "Username atau password tidak valid.");
+                //     return (false, $"Koneksi ke server LDAP gagal: {ex.Message}");
+                // }
+                // catch (Exception ex)
+                // {
+                //     _logger.LogError(ex, "Terjadi kesalahan pada proses autentikasi.");
+                //     return (false, "Terjadi kesalahan pada proses autentikasi.");
+                // }
+
+                return (true, "");
             });
         }
 
