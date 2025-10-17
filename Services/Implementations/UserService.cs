@@ -38,6 +38,7 @@ namespace astratech_apps_backend.Services.Implementations
                             Root = reader.GetString(reader.GetOrdinal("app_tautan")),
                             AppId = reader.GetString(reader.GetOrdinal("app_id")),
                             RoleId = reader.GetString(reader.GetOrdinal("rol_id")),
+                            AppIcon = reader.GetString(reader.GetOrdinal("app_icon"))
                         });
                     } while (await reader.ReadAsync());
                 }
@@ -49,6 +50,52 @@ namespace astratech_apps_backend.Services.Implementations
             catch (Exception ex)
             {
                 return (false, [], $"Gagal mendapatkan daftar aplikasi: {ex.Message}");
+            }
+        }
+
+        public async Task<(bool IsSuccess, List<Menu> ListMenu, string? ErrorMessage)> GetListMenuAsync(string username, string aplikasi, string role)
+        {
+            try
+            {
+                var list = new List<Menu>();
+
+                await using var conn = new SqlConnection(_conn);
+                await using var cmd = new SqlCommand("sso_getMenuByUsername", conn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                cmd.Parameters.AddWithValue("@Username", username);
+                cmd.Parameters.AddWithValue("@Aplikasi", aplikasi);
+                cmd.Parameters.AddWithValue("@Role", role);
+
+                await conn.OpenAsync();
+                await using var reader = await cmd.ExecuteReaderAsync();
+                if (await reader.ReadAsync())
+                {
+                    do
+                    {
+                        list.Add(new Menu
+                        {
+                            Id = reader.GetInt32(reader.GetOrdinal("men_id")),
+                            ParentId = reader.GetInt32(reader.GetOrdinal("men_parent_id")),
+                            Icon = reader.GetString(reader.GetOrdinal("men_icon")),
+                            Label = reader.GetString(reader.GetOrdinal("men_nama")),
+                            Href = reader.GetString(reader.GetOrdinal("men_link"))
+                        });
+                    } while (await reader.ReadAsync());
+                }
+
+                var lookup = list.ToLookup(p => p.ParentId);
+                foreach (var menu in list)
+                {
+                    menu.Children = [.. lookup[menu.Id]];
+                }
+
+                return (true, lookup[0].ToList(), "");
+            }
+            catch (Exception ex)
+            {
+                return (false, [], $"Gagal mendapatkan daftar menu: {ex.Message}");
             }
         }
 

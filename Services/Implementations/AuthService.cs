@@ -63,6 +63,20 @@ namespace astratech_apps_backend.Services.Implementations
             };
         }
 
+        public async Task<MenuResponseDto?> GetMenuAsync(PermissionRequestDto dto)
+        {
+            var (IsSuccess, ListMenu, ErrorMessage) = await _userService.GetListMenuAsync(dto.Username, dto.AppId, dto.RoleId);
+            if (!IsSuccess)
+            {
+                return new MenuResponseDto { ErrorMessage = ErrorMessage! };
+            }
+
+            return new MenuResponseDto
+            {
+                ListMenu = ListMenu
+            };
+        }
+
         public async Task<PermissionResponseDto?> GetPermissionAsync(PermissionRequestDto dto)
         {
             var (IsSuccess, ListPermission, ErrorMessage) = await _userService.GetPermissionAsync(dto.Username, dto.AppId, dto.RoleId);

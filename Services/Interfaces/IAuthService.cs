@@ -6,5 +6,6 @@ namespace astratech_apps_backend.Services.Interfaces
     {
         Task<LoginResponseDto?> AuthenticateAsync(LoginRequestDto dto);
         Task<PermissionResponseDto?> GetPermissionAsync(PermissionRequestDto dto);
+        Task<MenuResponseDto?> GetMenuAsync(PermissionRequestDto dto);
     }
 }

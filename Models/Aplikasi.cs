@@ -7,5 +7,6 @@
         public string Root { get; set; } = string.Empty;
         public string AppId { get; set; } = string.Empty;
         public string RoleId { get; set; } = string.Empty;
+        public string AppIcon { get; set; } = string.Empty;
     }
 }
