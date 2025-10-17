@@ -8,6 +8,9 @@ namespace astratech_apps_backend.Services.Implementations
     public class UserService(IConfiguration config) : IUserService
     {
         private readonly string _conn = PolmanAstraLibrary.PolmanAstraLibrary.Decrypt(config.GetConnectionString("DefaultConnection")!, Environment.GetEnvironmentVariable("DECRYPT_KEY_CONNECTION_STRING"));
+        private const string UsernameParam = "@Username";
+        private const string ApplicationParam = "@Aplikasi";
+        private const string RoleParam = "@Role";
 
         public async Task<(bool IsSuccess, List<Aplikasi> ListAplikasi, string? ErrorMessage)> AuthenticateAsync(string username, string jenisAplikasi)
         {
@@ -21,7 +24,7 @@ namespace astratech_apps_backend.Services.Implementations
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                cmd.Parameters.AddWithValue("@Username", username);
+                cmd.Parameters.AddWithValue(UsernameParam, username);
                 cmd.Parameters.AddWithValue("@JenisAplikasi", jenisAplikasi);
 
                 await conn.OpenAsync();
@@ -64,9 +67,9 @@ namespace astratech_apps_backend.Services.Implementations
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                cmd.Parameters.AddWithValue("@Username", username);
-                cmd.Parameters.AddWithValue("@Aplikasi", aplikasi);
-                cmd.Parameters.AddWithValue("@Role", role);
+                cmd.Parameters.AddWithValue(UsernameParam, username);
+                cmd.Parameters.AddWithValue(ApplicationParam, aplikasi);
+                cmd.Parameters.AddWithValue(RoleParam, role);
 
                 await conn.OpenAsync();
                 await using var reader = await cmd.ExecuteReaderAsync();
@@ -110,9 +113,9 @@ namespace astratech_apps_backend.Services.Implementations
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                cmd.Parameters.AddWithValue("@Username", username);
-                cmd.Parameters.AddWithValue("@Aplikasi", aplikasi);
-                cmd.Parameters.AddWithValue("@Role", role);
+                cmd.Parameters.AddWithValue(UsernameParam, username);
+                cmd.Parameters.AddWithValue(ApplicationParam, aplikasi);
+                cmd.Parameters.AddWithValue(RoleParam, role);
 
                 await conn.OpenAsync();
                 await using var reader = await cmd.ExecuteReaderAsync();
@@ -140,9 +143,9 @@ namespace astratech_apps_backend.Services.Implementations
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                cmd.Parameters.AddWithValue("@Username", username);
-                cmd.Parameters.AddWithValue("@Aplikasi", aplikasi);
-                cmd.Parameters.AddWithValue("@Role", role);
+                cmd.Parameters.AddWithValue(UsernameParam, username);
+                cmd.Parameters.AddWithValue(ApplicationParam, aplikasi);
+                cmd.Parameters.AddWithValue(RoleParam, role);
                 cmd.Parameters.AddWithValue("@Permission", permission);
 
                 await conn.OpenAsync();

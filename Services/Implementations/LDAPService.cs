@@ -57,13 +57,13 @@ namespace astratech_apps_backend.Services.Implementations
                 }
                 catch (LdapException ex)
                 {
-                    _logger.LogError(ex, "Koneksi ke server LDAP gagal: {ex.Message}", ex.Message);
-                    return null;
+                    _logger.LogError(ex, "Koneksi ke server LDAP gagal: {Error}", ex.Message);
+                    return samAccountName;
                 }
                 catch (Exception ex)
                 {
                     _logger.LogError(ex, "Gagal mendapatkan atribut {Attribute} untuk username {User}", attributeName, samAccountName);
-                    return ex.Message;
+                    return samAccountName;
                 }
             });
         }
