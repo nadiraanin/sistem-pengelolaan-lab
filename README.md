@@ -82,9 +82,13 @@ dotnet run
 
 Akses API di browser:
 ```
-https://localhost:5001/swagger
+https://localhost:5001/swagger (sesuaikan)
 ```
+## 🚀 Setting Environment Variable Windows
+Tambahkan key berikut
 
+DECRYPT_KEY_JWT  : 518d96e5383b5606c4722f60f0ce7f9d8710a4bd383312815341ea1a664abd21
+DECRYPT_KEY_CONNECTION_STRING : 80ad226fefefa6565197e091d6c465d2
 ---
 
 ## 🧩 Panduan Kontribusi
