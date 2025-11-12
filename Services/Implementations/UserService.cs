@@ -1,9 +1,9 @@
-﻿using astratech_apps_backend.Models;
-using astratech_apps_backend.Services.Interfaces;
+﻿using sistem_pengelolaan_lab.Models;
+using sistem_pengelolaan_lab.Services.Interfaces;
 using Microsoft.Data.SqlClient;
 using System.Data;
 
-namespace astratech_apps_backend.Services.Implementations
+namespace sistem_pengelolaan_lab.Services.Implementations
 {
     public class UserService(IConfiguration config) : IUserService
     {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace astratech_apps_backend.DTOs.Auth
+namespace sistem_pengelolaan_lab.DTOs.Auth
 {
     public class PermissionRequestDto
     {

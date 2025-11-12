@@ -1,10 +1,10 @@
-﻿using astratech_apps_backend.DTOs.Auth;
-using astratech_apps_backend.Helpers;
-using astratech_apps_backend.Services.Interfaces;
+﻿using sistem_pengelolaan_lab.DTOs.Auth;
+using sistem_pengelolaan_lab.Helpers;
+using sistem_pengelolaan_lab.Services.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
-namespace astratech_apps_backend.Services.Implementations
+namespace sistem_pengelolaan_lab.Services.Implementations
 {
     public class AuthService(IConfiguration config, ILdapService ldapService, IUserService userService, IHttpContextAccessor httpContextAccessor) : IAuthService
     {

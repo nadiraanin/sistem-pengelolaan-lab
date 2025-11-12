@@ -1,4 +1,4 @@
-﻿namespace astratech_apps_backend.Models
+﻿namespace sistem_pengelolaan_lab.Models
 {
     public class Menu
     {

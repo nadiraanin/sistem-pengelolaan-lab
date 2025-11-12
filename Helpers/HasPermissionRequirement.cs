@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 
-namespace astratech_apps_backend.Helpers
+namespace sistem_pengelolaan_lab.Helpers
 {
     public class HasPermissionRequirement(string permission) : IAuthorizationRequirement
     {

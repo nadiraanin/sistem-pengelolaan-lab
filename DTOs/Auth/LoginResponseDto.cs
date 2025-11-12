@@ -1,6 +1,6 @@
-﻿using astratech_apps_backend.Models;
+﻿using sistem_pengelolaan_lab.Models;
 
-namespace astratech_apps_backend.DTOs.Auth
+namespace sistem_pengelolaan_lab.DTOs.Auth
 {
     public class LoginResponseDto
     {

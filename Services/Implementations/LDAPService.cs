@@ -1,9 +1,9 @@
-using astratech_apps_backend.Services.Interfaces;
+using sistem_pengelolaan_lab.Services.Interfaces;
 using System.DirectoryServices.Protocols;
 using System.Net;
 using System.Text;
 
-namespace astratech_apps_backend.Services.Implementations
+namespace sistem_pengelolaan_lab.Services.Implementations
 {
     public class LdapService(IConfiguration configuration, ILogger<LdapService> logger) : ILdapService
     {

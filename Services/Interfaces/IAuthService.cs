@@ -1,6 +1,6 @@
-﻿using astratech_apps_backend.DTOs.Auth;
+﻿using sistem_pengelolaan_lab.DTOs.Auth;
 
-namespace astratech_apps_backend.Services.Interfaces
+namespace sistem_pengelolaan_lab.Services.Interfaces
 {
     public interface IAuthService
     {

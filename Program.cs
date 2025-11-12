@@ -1,16 +1,19 @@
-using astratech_apps_backend.Helpers;
-using astratech_apps_backend.Repositories.Implementations;
-using astratech_apps_backend.Repositories.Interfaces;
-using astratech_apps_backend.Services.Implementations;
-using astratech_apps_backend.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore; 
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using sistem_pengelolaan_lab.Models;
+using sistem_pengelolaan_lab.Helpers;
+using sistem_pengelolaan_lab.Repositories.Implementations;
+using sistem_pengelolaan_lab.Repositories.Interfaces;
+using sistem_pengelolaan_lab.Services.Implementations;
+using sistem_pengelolaan_lab.Services.Interfaces;
 using System.Text;
+using sistem_pengelolaan_lab.DTOs.Ruangan;
 
-namespace astratech_apps_backend
+namespace sistem_pengelolaan_lab
 {
     public static class Program
     {
@@ -37,6 +40,8 @@ namespace astratech_apps_backend
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "ASTRATECH API", Version = "v1" });
@@ -73,6 +78,9 @@ namespace astratech_apps_backend
             builder.Services.AddScoped<IAuthorizationHandler, HasPermissionHandler>();
 
             builder.Services.AddScoped<IInstitusiRepository, InstitusiRepository>();
+            builder.Services.AddScoped<IRuanganRepository, RuanganRepository>();
+            builder.Services.AddScoped<IStorageRepository, StorageRepository>(); // Jika Storage perlu manajemen terpisah
+            builder.Services.AddScoped<IRuanganService, RuanganService>();
 
             builder.Services.AddAuthorizationBuilder()
                 .AddPolicy("HasPermission", policy =>

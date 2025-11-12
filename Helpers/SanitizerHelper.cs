@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Reflection;
 
-namespace astratech_apps_backend.Helpers
+namespace sistem_pengelolaan_lab.Helpers
 {
     public static class SanitizerHelper
     {

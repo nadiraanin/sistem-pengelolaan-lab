@@ -3,7 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace astratech_apps_backend.Helpers
+namespace sistem_pengelolaan_lab.Helpers
 {
     public static class JwtHelper
     {

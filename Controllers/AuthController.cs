@@ -1,11 +1,11 @@
-﻿using astratech_apps_backend.DTOs.Auth;
-using astratech_apps_backend.Helpers;
-using astratech_apps_backend.Services.Interfaces;
+﻿using sistem_pengelolaan_lab.DTOs.Auth;
+using sistem_pengelolaan_lab.Helpers;
+using sistem_pengelolaan_lab.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
-namespace astratech_apps_backend.Controllers
+namespace sistem_pengelolaan_lab.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

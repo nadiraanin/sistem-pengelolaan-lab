@@ -1,8 +1,8 @@
-﻿using astratech_apps_backend.Services.Interfaces;
+﻿using sistem_pengelolaan_lab.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 
-namespace astratech_apps_backend.Helpers
+namespace sistem_pengelolaan_lab.Helpers
 {
     public class HasPermissionHandler(IUserService userService) : AuthorizationHandler<HasPermissionRequirement>
     {

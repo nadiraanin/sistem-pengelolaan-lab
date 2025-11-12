@@ -1,7 +1,7 @@
-﻿using astratech_apps_backend.DTOs.Institusi;
-using astratech_apps_backend.Models;
+﻿using sistem_pengelolaan_lab.DTOs.Institusi;
+using sistem_pengelolaan_lab.Models;
 
-namespace astratech_apps_backend.Repositories.Interfaces
+namespace sistem_pengelolaan_lab.Repositories.Interfaces
 {
     public interface IInstitusiRepository
     {

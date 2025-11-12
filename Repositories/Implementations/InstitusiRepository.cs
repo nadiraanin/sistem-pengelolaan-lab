@@ -1,10 +1,10 @@
-﻿using astratech_apps_backend.DTOs.Institusi;
-using astratech_apps_backend.Models;
-using astratech_apps_backend.Repositories.Interfaces;
+﻿using sistem_pengelolaan_lab.DTOs.Institusi;
+using sistem_pengelolaan_lab.Models;
+using sistem_pengelolaan_lab.Repositories.Interfaces;
 using Microsoft.Data.SqlClient;
 using System.Data;
 
-namespace astratech_apps_backend.Repositories.Implementations
+namespace sistem_pengelolaan_lab.Repositories.Implementations
 {
     public class InstitusiRepository(IConfiguration config) : IInstitusiRepository
     {

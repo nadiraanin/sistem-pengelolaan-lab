@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace astratech_apps_backend.DTOs.Institusi
+namespace sistem_pengelolaan_lab.DTOs.Institusi
 {
     public class CreateInstitusiRequest
     {
