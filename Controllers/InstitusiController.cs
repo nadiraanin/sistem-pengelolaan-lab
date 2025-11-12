@@ -4,6 +4,7 @@ using sistem_pengelolaan_lab.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using sistem_pengelolaan_lab.Models; // <-- Assuming Institusi is defined here
 
 namespace sistem_pengelolaan_lab.Controllers
 {
@@ -26,7 +27,8 @@ namespace sistem_pengelolaan_lab.Controllers
             var sanitizedDto = SanitizerHelper.EncodeObject(dto);
             if (sanitizedDto == null) return NotFound();
 
-            var (list, totalData) = await _repo.GetAllAsync(sanitizedDto);
+            // Explicitly specify the type to resolve CS8130 and CS0121
+            (IEnumerable<Institusi> list, int totalData) = await _repo.GetAllAsync((GetAllInstitusiRequest)sanitizedDto);
 
             var dataDTO = list.Select(m => new InstitusiDto
             {
