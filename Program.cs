@@ -81,7 +81,9 @@ namespace sistem_pengelolaan_lab
             builder.Services.AddScoped<IRuanganRepository, RuanganRepository>();
             builder.Services.AddScoped<IStorageRepository, StorageRepository>(); // Jika Storage perlu manajemen terpisah
             builder.Services.AddScoped<IRuanganService, RuanganService>();
-
+            builder.Services.AddScoped<IBarangService, BarangService>();
+            builder.Services.AddScoped<IStorageService, StorageService>();
+            builder.Services.AddScoped<IPeminjamanBarangService, PeminjamanBarangService>();
             builder.Services.AddAuthorizationBuilder()
                 .AddPolicy("HasPermission", policy =>
                 {

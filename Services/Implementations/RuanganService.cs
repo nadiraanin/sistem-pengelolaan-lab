@@ -11,7 +11,40 @@ namespace sistem_pengelolaan_lab.Services.Implementations
         private readonly IRuanganRepository _ruanganRepository;
         private readonly IStorageRepository _storageRepository; // Untuk manajemen Storage
         private readonly IMapper _mapper;
+        private readonly string _connectionString;
 
+        public RuanganService(IConfiguration configuration)
+        {
+            _connectionString = configuration.GetConnectionString("DefaultConnection");
+        }
+
+        // Implementasi metode untuk dropdown
+        public async Task<IEnumerable<RuanganReadDto>> GetRuanganForDropdownAsync()
+        {
+            var list = new List<RuanganReadDto>();
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                // Panggil SP yang sudah kita buat
+                var command = new SqlCommand("dbo.usp_GetRuanganForDropdown", connection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                await connection.OpenAsync();
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        list.Add(new RuanganReadDto
+                        {
+                            IdRuangan = reader.GetInt32(reader.GetOrdinal("ID_Ruangan")),
+                            NamaRuangan = reader.GetString(reader.GetOrdinal("Nama_Ruangan"))
+                            // Properti lain di DTO ini bisa null karena SP hanya mengembalikan ID & Nama
+                        });
+                    }
+                }
+            }
+            return list;
+        }
         public RuanganService(IRuanganRepository ruanganRepository, IStorageRepository storageRepository, IMapper mapper)
         {
             _ruanganRepository = ruanganRepository;

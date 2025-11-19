@@ -13,10 +13,29 @@ namespace sistem_pengelolaan_lab.Controllers
     public class RuanganController : ControllerBase
     {
         private readonly IRuanganService _ruanganService;
+        private readonly IStorageService _storageService;
 
-        public RuanganController(IRuanganService ruanganService)
+        public RuanganController(IRuanganService ruanganService, IStorageService storageService)
         {
             _ruanganService = ruanganService;
+            _storageService = storageService;
+        }
+        // Front-end akan memanggil: GET /api/ruangan/dropdown
+        [HttpGet("dropdown")]
+        public async Task<IActionResult> GetRuanganDropdown()
+        {
+            var ruanganList = await _ruanganService.GetRuanganForDropdownAsync();
+            return Ok(ruanganList);
+        }
+
+    
+        // Front-end akan memanggil: GET /api/ruangan/5/storage
+        [HttpGet("{idRuangan}/storage")]
+        public async Task<IActionResult> GetStorageDropdownByRuangan(int idRuangan)
+        {
+            // Anda perlu membuat metode ini di IStorageService & StorageService
+            var storageList = await _storageService.GetStorageByRuanganAsync(idRuangan);
+            return Ok(storageList);
         }
 
         // GET: api/Ruangan
